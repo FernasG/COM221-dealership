@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  dealership-service:
+    container_name: dealership
+    image: dealership:latest
+    build: .
+    env_file:
+      - .env
+    environment:
+      - TZ=America/Sao_Paulo
+    volumes:
+      - ${PWD}:/app
+    ports:
+      - 3000:3000
+
