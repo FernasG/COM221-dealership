@@ -6,11 +6,11 @@ import path from "path";
 const setupServer = ((app: Express) => {
     app.use(router);
     app.use(express.json());
-    app.use(express.static(path.resolve('src', 'views', 'layouts')))
+    app.use(express.static(path.resolve('src', 'views', 'layouts')));
 
-    app.engine('handlebars', engine());
-    app.set('view engine', 'handlebars');
+    app.set('view engine', 'hbs');
     app.set('views', path.resolve('src', 'views'));
+    app.engine('hbs', engine({ defaultLayout: 'index.hbs' }));
 });
 
 (() => {
