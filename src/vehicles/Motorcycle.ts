@@ -2,6 +2,6 @@ import { Vehicle } from "./Vehicle";
 
 export class Motorcycle extends Vehicle {
     calcIPVA(): number {
-        return this.price * 0.02;
+        return this.getPrice * 0.02;
     }
 }

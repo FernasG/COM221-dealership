@@ -8,6 +8,8 @@ router.get('', (req: Request, res: Response) => {
     res.render('Home');
 });
 
-router.post('vehicle', vehicleController.createVehicle);
+router.post('/vehicles', vehicleController.createVehicle.bind(vehicleController));
+router.get('/vehicles/:id',  vehicleController.findVehicle.bind(vehicleController));
+router.get('/vehicles',  vehicleController.listVehicles.bind(vehicleController));
 
 export default router;

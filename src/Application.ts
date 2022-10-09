@@ -15,6 +15,10 @@ export default class Application {
         return Application.instance;
     }
 
+    public get getStock() {
+        return this.stock;
+    }
+
     public insertVehicle(vehicle: Vehicle, quantity: number) {
         this.stock.push(new StockItem(vehicle, quantity));
     }

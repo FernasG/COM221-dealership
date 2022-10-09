@@ -1,42 +1,42 @@
-import uuid from "uuid";
+import * as uuid from "uuid";
 
 export abstract class Vehicle {
-    private _id: string;
-    private _price: number;
-    private readonly _model: string;
-    private readonly _manufacturer: string;
-    private readonly _manufacturing_date: Date;
+    private id: string;
+    private price: number;
+    private readonly model: string;
+    private readonly manufacturer: string;
+    private readonly manufacturing_date: Date;
 
     constructor(model: string, manufacturer: string, manufacturing_date: Date, price: number) {
-        this._id = uuid.v4();
-        this._model = model;
-        this._price = price;
-        this._manufacturer = manufacturer;
-        this._manufacturing_date = manufacturing_date;
+        this.id = uuid.v4();
+        this.model = model;
+        this.price = price;
+        this.manufacturer = manufacturer;
+        this.manufacturing_date = manufacturing_date;
     }
 
-    get id() {
-        return this._id;
+    get getId() {
+        return this.id;
     }
 
-    get price() {
-        return this._price;
+    get getPrice() {
+        return this.price;
     }
 
-    get model() {
-        return this._model;
+    get getModel() {
+        return this.model;
     }
 
-    get manufacturer() {
-        return this._manufacturer;
+    get getManufacturer() {
+        return this.manufacturer;
     }
 
-    get manufacturing_date() {
-        return this._manufacturing_date;
+    get getManufacturingDate() {
+        return this.manufacturing_date;
     }
 
-    set price(price: number) {
-        this._price = price;
+    set setPrice(price: number) {
+        this.price = price;
     }
 
     abstract calcIPVA(): number;

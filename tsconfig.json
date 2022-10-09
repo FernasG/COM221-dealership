@@ -38,7 +38,8 @@
       "@stock": ["src/stock/StockItem.ts"],
       "@application": ["src/Application.ts"],
       "@controllers": ["src/controllers"],
-      "@controllers/*": ["src/controllers/*"]
+      "@controllers/*": ["src/controllers/*"],
+      "@middleware": ["src/middleware/Request.middleware.ts"]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
