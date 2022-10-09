@@ -1,5 +1,6 @@
 import { engine } from "express-handlebars";
 import express, { Express } from "express";
+import Application from "@application";
 import router from "@routes";
 import path from "path";
 
