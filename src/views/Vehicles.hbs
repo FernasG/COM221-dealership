@@ -1,1 +1,16 @@
-<h1>SALVINHO</h1>
+<link rel="stylesheet" href="vehicles.css">
+
+<div class="container">
+    <div id="header">
+        <h1 id="title">Vehicles</h1>
+    </div>
+    <div id="body">
+        {{#each vehicles }}
+            {{this.model}}
+            {{this.manufacturer}}
+            {{this.price}}
+        {{else}}
+            No content
+        {{/each}}
+    </div>
+</div>

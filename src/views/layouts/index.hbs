@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dealership</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -16,17 +20,29 @@
 
             <nav id="navbar">
                 <ul id="list">
-                    <li class="list-item">
-                        <a href="vehicles">Vehicles</a>
+                    <li id="vehicles" class="list-item">
+                        <a href="vehicles">
+                            <i class="fa-solid fa-car"></i>
+                            Vehicles
+                        </a>
                     </li>
-                    <li class="list-item">
-                        <a href="#">Users</a>
+                    <li id="users" class="list-item">
+                        <a href="#">
+                            <i class="fa-solid fa-users"></i>
+                            Users
+                        </a>
                     </li>
-                    <li class="list-item">
-                        <a href="#">Stock</a>
+                    <li id="stock" class="list-item">
+                        <a href="#">
+                            <i class="fa-sharp fa-solid fa-box"></i>
+                            Stock
+                        </a>
                     </li>
-                    <li class="list-item">
-                        <a href="#">System</a>
+                    <li id="system" class="list-item">
+                        <a href="#">
+                            <i class="fa-solid fa-gear"></i>
+                            System
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -35,6 +51,8 @@
             {{{ body }}}
         </section>
     </main>
+
+    <script src="script.js" ></script>
 </body>
 
 </html>
