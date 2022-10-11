@@ -1,16 +1,26 @@
-<link rel="stylesheet" href="vehicles.css">
+<style>
+    div#content {
+        gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 
-<div class="container">
-    <div id="header">
-        <h1 id="title">Vehicles</h1>
+    div#content>div.card {
+        padding: 10px;
+        background: var(--rich-black-flogra);
+        border-radius: 10px;
+    }
+</style>
+
+<div id="content">
+    {{#each vehicles }}
+    <div id="vehicleId{{this.id}}" class="card">
+        <p>{{this.manufacturer}} {{this.model}}</p>
+        <p><span>Year:</span> {{this.manufacturing_date}}</p>
+        <p><span>Price:</span> {{currency this.price}}</p>
+        <button onclick="deleteVehicle('{{this.id}}')"><i class="fa-solid fa-trash"></i></button>
     </div>
-    <div id="body">
-        {{#each vehicles }}
-            {{this.model}}
-            {{this.manufacturer}}
-            {{this.price}}
-        {{else}}
-            No content
-        {{/each}}
-    </div>
+    {{else}}
+    <p class="no-contenr">No content</p>
+    {{/each}}
 </div>

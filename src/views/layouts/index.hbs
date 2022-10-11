@@ -11,48 +11,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.js"
+        integrity="sha512-alPPV0FSr6mYlSRf3QgbZmEqL7o99K5e30hGX+FrqDwMhnTngIeshurUAuKFDG28IzPSCSWTwmEfN0wBjg19KQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
     <main>
-        <aside id="sidebar">
-            <h1 id="title">Dealership</h1>
+        <nav id="navbar">
+            <div id="nav-title">
+                <h1>Dealership</h1>
+            </div>
 
-            <nav id="navbar">
-                <ul id="list">
-                    <li id="vehicles" class="list-item">
-                        <a href="vehicles">
-                            <i class="fa-solid fa-car"></i>
-                            Vehicles
-                        </a>
-                    </li>
-                    <li id="users" class="list-item">
-                        <a href="#">
-                            <i class="fa-solid fa-users"></i>
-                            Users
-                        </a>
-                    </li>
-                    <li id="stock" class="list-item">
-                        <a href="#">
-                            <i class="fa-sharp fa-solid fa-box"></i>
-                            Stock
-                        </a>
-                    </li>
-                    <li id="system" class="list-item">
-                        <a href="#">
-                            <i class="fa-solid fa-gear"></i>
-                            System
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-        <section>
+            <ul id="nav-menu">
+                <li id="vehicles" class="list-item">
+                    <a href="vehicles">
+                        <i class="fa-solid fa-car"></i>
+                        Vehicles
+                    </a>
+                </li>
+                <li id="users" class="list-item">
+                    <a href="#">
+                        <i class="fa-solid fa-users"></i>
+                        Users
+                    </a>
+                </li>
+                <li id="stock" class="list-item">
+                    <a href="#">
+                        <i class="fa-sharp fa-solid fa-box"></i>
+                        Stock
+                    </a>
+                </li>
+                <li id="system" class="list-item">
+                    <a href="#">
+                        <i class="fa-solid fa-gear"></i>
+                        System
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <section id="container">
+            <div id="section-title">
+                <h2></h2>
+            </div>
             {{{ body }}}
         </section>
     </main>
 
-    <script src="script.js" ></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

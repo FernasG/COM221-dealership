@@ -32,69 +32,95 @@ a {
     text-decoration: none;
 }
 
-aside#sidebar {
-    width: 300px;
-    height: 100%;
-    user-select: none;
-    background: var(--rich-black-flogra);
-    border-right: 3px solid var(--neon-blue);
+button {
+    background: none;
+    color: inherit;
+    outline: none;
+    border: none;
 }
 
-#sidebar>#title {
-    width: 100%;
-    height: 70px;
+main {
     display: flex;
-    padding: 0 10px;
+    flex-direction: column;
+}
+
+ul {
+    list-style: none;
+}
+
+nav#navbar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    user-select: none;
+    flex-direction: row;
+    background: var(--rich-black-flogra);
+    border-bottom: 3px solid var(--neon-blue);
+}
+
+nav#navbar>* {
+    width: 50%;
+    height: 60px;
+    margin: 0 60px;
+}
+
+nav#navbar>#nav-title {
+    display: flex;
+    align-items: center;
+}
+
+nav#navbar>ul#nav-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+nav#navbar>ul#nav-menu>li {
+    height: 100%;
+    width: 120px;
+}
+
+nav#navbar>ul#nav-menu>li>a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: all 500ms;
+    align-items: center;
+    font-weight: bold;
+    justify-content: space-evenly;
+}
+
+nav#navbar>ul#nav-menu>li>a:hover {
+    background: var(--neon-blue);
+}
+
+.center {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-nav#navbar>#list>li {
-    height: 50px;
-}
-
-nav#navbar>#list>li>a {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    padding: 0 25px;
-    font-weight: bold;
-    align-items: center;
-    transition: all 0.5s;
-}
-
-nav#navbar>#list>li>a:hover {
-    background: var(--neon-blue);
-}
-
-nav#navbar>#list>li.list-item-selected {
+.nav-item-selected {
     background: var(--neon-blue);
     pointer-events: none;
-    cursor: none;
+    cursor: auto;
 }
 
-nav#navbar>#list>li>a>i {
-    margin-right: 12px;
-}
-
-section {
-    height: 100%;
-    padding: 75px;
-    width: calc(100% - 300px);
-}
-
-section>* {
-    height: 100%;
+section#container {
+    width: 60%;
     padding: 10px;
-    border: 3px solid var(--neon-blue);
-    background: var(--rich-black-flogra);
+    min-height: 60vh;
+    margin: 50px auto;
     border-radius: 10px;
+    /* background: var(--rich-black-flogra); */
 }
 
-div.container>#header {
-    justify-content: center;
-    align-items: center;
-    display: flex;
+section#container>div#section-title {
     width: 100%;
-    height: 50px;
+    height: 40px;
+    display: flex;
+    padding: 5px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--neon-blue);
 }

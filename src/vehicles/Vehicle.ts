@@ -3,11 +3,11 @@ import * as uuid from "uuid";
 export abstract class Vehicle {
     private id: string;
     private price: number;
-    private readonly model: string;
-    private readonly manufacturer: string;
-    private readonly manufacturing_date: Date;
+    private model: string;
+    private manufacturer: string;
+    private manufacturing_date: string;
 
-    constructor(model: string, manufacturer: string, manufacturing_date: Date, price: number) {
+    constructor(model: string, manufacturer: string, manufacturing_date: string, price: number) {
         this.id = uuid.v4();
         this.model = model;
         this.price = price;
@@ -37,6 +37,18 @@ export abstract class Vehicle {
 
     set setPrice(price: number) {
         this.price = price;
+    }
+
+    set setModel(model: string) {
+        this.model = model;
+    }
+
+    set setManufacturer(manufacturer: string) {
+        this.manufacturer = manufacturer;
+    }
+
+    set setManufacturingDate(manufacturing_date: string) {
+        this.manufacturing_date = manufacturing_date;
     }
 
     abstract calcIPVA(): number;

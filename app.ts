@@ -1,7 +1,7 @@
+import express, { Express } from "express";
 import { engine } from "express-handlebars";
 import { RequestMiddleware } from "@middleware"
-import express, { Express } from "express";
-import Application from "@application";
+import { Helpers } from "./src/handlebars/HandlebarsHelpers";
 import router from "@routes";
 import path from "path";
 
@@ -13,7 +13,7 @@ const setupServer = ((app: Express) => {
 
     app.set('view engine', 'hbs');
     app.set('views', path.resolve('src', 'views'));
-    app.engine('hbs', engine({ defaultLayout: 'index.hbs' }));
+    app.engine('hbs', engine({ defaultLayout: 'index.hbs', helpers: Helpers }));
 });
 
 (() => {
