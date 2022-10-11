@@ -1,14 +1,17 @@
 import { StockItem } from "src/stock/StockItem";
 import { Vehicle } from "@vehicles";
+import { Users } from "@users/Users";
 
 export default class Application {
     private static instance: Application;
     private readonly vehicles: Set<Vehicle>;
     private readonly stock: Set<StockItem>;
+    private readonly users: Set<Users>;
 
     private constructor() {
         this.vehicles = new Set<Vehicle>();
         this.stock = new Set<StockItem>();
+        this.users = new Set<Users>();
     }
 
     public static get getInstance(): Application {
@@ -23,6 +26,10 @@ export default class Application {
 
     public get getVehicles() {
         return Array.from(this.vehicles);
+    }
+
+    public get getUsers() {
+        return Array.from(this.users);
     }
 
     public insertVehicle(vehicle: Vehicle) {
