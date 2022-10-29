@@ -9,7 +9,7 @@ RUN npm install --location=global npm@${NPM_VERSION}
 
 WORKDIR /app
 
-COPY package*.json /app/
+COPY package*.json /
 
 RUN npm install
 
