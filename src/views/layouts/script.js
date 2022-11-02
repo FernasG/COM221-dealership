@@ -2,6 +2,8 @@ const axiosConfig = {
     baseURL: 'http://dealership/'
 };
 
+const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
 const getViewName = (() => {
     return document.location.pathname.replace('/', '');
 });
@@ -74,7 +76,7 @@ const createVehicle = (async () => {
 
     const createPromise = await axios.post('vehicles', vehicleRequest, axiosConfig).catch(err => err);
 
-    if (createPromise.status === 200) document.location.reload();
+    if (createPromise.status === 201) document.location.reload();
 });
 
 const toggleModelVisibility = ((before, after) => {
@@ -95,9 +97,24 @@ const closeModal = (() => {
     toggleModelVisibility('show', 'hide');
 });
 
+const formatCurrency = ((event) => {
+    const input = document.querySelector('div.input-box>input#price');
+
+    if (!input) return null;
+
+    const { value } = input;
+
+    const valueFormatted = currencyFormatter.format(value).replace(/^[$]/gm, '');
+
+    console.log(Number(valueFormatted));
+
+    input.setAttribute('value', Number(valueFormatted));
+});
+
 (() => {
     const viewName = getViewName();
 
     selectMenuItem(viewName);
     setSectionTitle(viewName);
+    document.querySelector('div.input-box>input#price').addEventListener('keyup', formatCurrency);
 })();

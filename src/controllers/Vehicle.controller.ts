@@ -1,8 +1,11 @@
+import { VehicleFactory, VehicleType, VehicleContent } from "@factory";
 import { BaseController } from "./BaseController";
+import { HttpStatus } from "./Controllers.interface";
 import { Request, Response } from "express";
-import { Car, Motorcycle } from "@vehicles";
 
 export class VehicleController extends BaseController {
+    private readonly vehicleFactory: VehicleFactory = new VehicleFactory();
+
     public async listVehicles(req: Request, res: Response) {
         const vehicles = this.App.getVehicles;
 
@@ -12,22 +15,27 @@ export class VehicleController extends BaseController {
     public async findVehicle(req: Request, res: Response) {
         const { id } = req.params;
 
-        const vehicle = this.App.getStock.find(item => { return item.vehicle.getId === id });
+        const vehicle = this.App.getVehicles.find(item => { return item.getId === id });
 
-        if (!vehicle) return res.status(404).json({ message: 'Vehicle not found.' });
+        if (!vehicle) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Vehicle not found.' });
 
-        return res.status(200).json({ vehicle });
+        return res.status(HttpStatus.OK).json({ vehicle });
     }
 
     public async createVehicle(req: Request, res: Response) {
-        const { model, manufacturer, manufacturing_date, price } = req.body;
-        console.log(req.body);
+        const { model, manufacturer, manufacturing_date, price, type } = req.body;
 
-        const vehicle = new Car(model, manufacturer, manufacturing_date, price);
+        if (!Object.keys(VehicleType).includes(type)) return res.status(HttpStatus.BAD_REQUEST).json({ message: '' });
+
+        const vehicleContent: VehicleContent = { model, manufacturer, manufacturing_date, price };
+
+        const vehicle = this.vehicleFactory.createVehicle(type, vehicleContent);
+
+        if (!vehicle) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: '' });
 
         this.App.insertVehicle(vehicle);
 
-        return res.status(201).json({ message: 'Vehicle created.', vehicle });
+        return res.status(HttpStatus.CREATED).json({ message: 'Vehicle created.', vehicle });
     }
 
     public async deleteVehicle(req: Request, res: Response) {
@@ -35,7 +43,7 @@ export class VehicleController extends BaseController {
 
         const vehicle = this.App.getVehicles.find(vehicle => { return vehicle.getId === id });
 
-        if (!vehicle) return res.status(404).json({ message: 'Vehicle not found.' });
+        if (!vehicle) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Vehicle not found.' });
 
         this.App.removeVehicle(vehicle);
 
@@ -47,13 +55,13 @@ export class VehicleController extends BaseController {
 
         const vehicle = this.App.getVehicles.find(vehicle => { return vehicle.getId === id });
 
-        if (!vehicle) return res.status(404).json({ message: 'Vehicle not found.' });
+        if (!vehicle) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Vehicle not found.' });
 
         if (model) vehicle.setModel = model;
         if (manufacturing_date) vehicle.setManufacturingDate = manufacturing_date;
         if (manufacturer) vehicle.setManufacturer = manufacturer;
         if (price) vehicle.setPrice = price;
 
-        return res.status(200).json({ message: 'Vehicle updated.' });
+        return res.status(HttpStatus.OK).json({ message: 'Vehicle updated.' });
     }
 }
