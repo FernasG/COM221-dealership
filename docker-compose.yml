@@ -12,5 +12,5 @@ services:
     volumes:
       - ${PWD}:/app
     ports:
-      - 3000:3000
+      - 80:80
 

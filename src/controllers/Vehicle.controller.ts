@@ -21,6 +21,7 @@ export class VehicleController extends BaseController {
 
     public async createVehicle(req: Request, res: Response) {
         const { model, manufacturer, manufacturing_date, price } = req.body;
+        console.log(req.body);
 
         const vehicle = new Car(model, manufacturer, manufacturing_date, price);
 

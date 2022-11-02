@@ -8,7 +8,8 @@ const stockController = new StockController();
 const usersController = new UsersController();
 
 router.get('', (req: Request, res: Response) => {
-    res.render('Home');
+    // res.render('Home');
+    res.redirect('/vehicles');
 });
 
 router.get('/vehicles',  vehicleController.listVehicles.bind(vehicleController));

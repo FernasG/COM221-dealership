@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
 :root {
     --maximum-blue-green: #16BAC5;
     --rich-black-flogra: #0C0C0C;
     --dark-jungle-gray: #171D1C;
+    --portland-orange: #FC1530;
+    --mint-green: #8CFF98;
+    --gunmental: #2A2D34;
     --maya-blue: #5FBFF9;
     --neon-blue: #5863F8;
+    --gray-web: #798086;
     --magnolia: #EFE9F4;
+    --azure: #007FFF;
 }
 
 * {
@@ -34,9 +39,9 @@ a {
 
 button {
     background: none;
-    color: inherit;
     outline: none;
     border: none;
+    color: inherit;
 }
 
 main {
@@ -112,15 +117,179 @@ section#container {
     min-height: 60vh;
     margin: 50px auto;
     border-radius: 10px;
-    /* background: var(--rich-black-flogra); */
 }
 
 section#container>div#section-title {
     width: 100%;
-    height: 40px;
+    height: 50px;
     display: flex;
     padding: 5px;
+    align-items: center;
     margin-bottom: 30px;
     justify-content: space-between;
     border-bottom: 3px solid var(--neon-blue);
+}
+
+div#section-title>div.buttons>button {
+    border-radius: 5px;
+    font-weight: bold;
+    width: 70px;
+    background: var(--neon-blue);
+    padding: 10px;
+    cursor: pointer;
+    color: var(--magnolia);
+}
+
+div#section-title>div.buttons>button>span {
+    margin-right: 5px;
+}
+
+div#overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 80%;
+    position: absolute;
+    background: var(--rich-black-flogra);
+}
+
+*.show {
+    display: block;
+}
+
+*.hide {
+    display: none;
+}
+
+div.model {
+    top: 50%;
+    left: 50%;
+    width: 650px;
+    position: absolute;
+    min-height: 200px;
+    background: var(--dark-jungle-gray);
+    user-select: none;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+}
+
+div.model>div.model-header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    padding: 10px 25px;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid var(--gray-web);
+}
+
+div.model>div.model-header>div {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+div.model>div.model-header>div.model-controls {
+    justify-content: flex-end;
+}
+
+div.model>div.model-header>div.model-controls>button,
+div.model>div.model-header>div.model-controls>button>* {
+    color: var(--portland-orange);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+div.model>div.model-body {
+    width: 100%;
+    border-bottom: 1px solid var(--gray-web);
+}
+
+div.model>div.model-body>div.model-form {
+    width: 100%;
+    padding: 10px;
+}
+
+div.model>div.model-body>div.model-form>div.form-line {
+    margin: 20px 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+div.model>div.model-body>div.model-form>div.form-line>div.input-box {
+    width: 100%;
+    height: 70px;
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.model>div.model-body>div.model-form>div.form-line>div.input-box>label {
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+div.model>div.model-body>div.model-form>div.form-line>div.input-box>input,
+div.model>div.model-body>div.model-form>div.form-line>div.input-box>select {
+    height: 35px;
+    border: 2px solid var(--neon-blue);
+    outline: none;
+    padding: 0 5px;
+    background: var(--dark-jungle-gray);
+    border-radius: 5px;
+}
+
+div.model>div.model-body>div.model-form>div.form-line>div.input-box>input:focus,
+div.model>div.model-body>div.model-form>div.form-line>div.input-box>select:focus {
+    border: 2px solid var(--maya-blue);
+    outline: none;
+}
+
+div.model>div.model-body>div.model-form>div.form-line>div.input-box>input.warning,
+div.model>div.model-body>div.model-form>div.form-line>div.input-box>select.warning {
+    border: 2px solid var(--portland-orange);
+    outline: none;
+}
+
+div.model>div.model-footer {
+    width: 100%;
+    height: 50px;
+}
+
+div.model>div.model-footer>div.model-buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+div.model>div.model-footer>div.model-buttons>button {
+    width: 70px;
+    cursor: pointer;
+    padding: 7px;
+    text-align: center;
+    transition: all 500ms;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+div.model>div.model-footer>div.model-buttons>button.save {
+    background: var(--neon-blue);
+}
+
+div.model>div.model-footer>div.model-buttons>button.save:hover {
+    background: var(--maya-blue);
+}
+
+div.model>div.model-footer>div.model-buttons>button.cancel {
+    border: 2px solid var(--portland-orange);
+    color: var(--portland-orange);
+}
+
+div.model>div.model-footer>div.model-buttons>button.cancel:hover {
+    color: var(--magnolia);
+    background: var(--portland-orange);
 }

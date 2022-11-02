@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <div class="hide" id="overlay"></div>
+
     <main>
         <nav id="navbar">
             <div id="nav-title">
@@ -50,9 +52,18 @@
                 </li>
             </ul>
         </nav>
+
         <section id="container">
             <div id="section-title">
-                <h2></h2>
+                <div class="title">
+                    <h2></h2>
+                </div>
+                <div class="buttons">
+                    <button class="center" onclick="showModel()">
+                        <span>Add</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
             </div>
             {{{ body }}}
         </section>
