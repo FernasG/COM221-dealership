@@ -1,7 +1,7 @@
 import * as uuid from "uuid";
 
 export abstract class Vehicle {
-    private id: string;
+    private readonly id: string;
     private price: number;
     private model: string;
     private manufacturer: string;

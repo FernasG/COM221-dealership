@@ -12,17 +12,18 @@ router.get('', (req: Request, res: Response) => {
     res.redirect('/vehicles');
 });
 
-router.get('/vehicles',  vehicleController.listVehicles.bind(vehicleController));
-router.get('/vehicles/:id',  vehicleController.findVehicle.bind(vehicleController));
+router.get('/vehicles', vehicleController.listVehicles.bind(vehicleController));
+router.get('/vehicles/:id', vehicleController.findVehicle.bind(vehicleController));
 router.post('/vehicles', vehicleController.createVehicle.bind(vehicleController));
 router.delete('/vehicles/:id', vehicleController.deleteVehicle.bind(vehicleController));
 router.patch('/vehicles', vehicleController.updateVehicle.bind(vehicleController));
 
-router.get('/system',  systemController.listSystem.bind(systemController));
+router.get('/system', systemController.listSystem.bind(systemController));
 
-router.get('/stock',  stockController.listStock.bind(stockController));
+router.get('/stock', stockController.listStock.bind(stockController));
+router.post('/stock', stockController.createStock.bind(stockController));
 
-router.get('/users',  usersController.listUsers.bind(usersController));
+router.get('/users', usersController.listUsers.bind(usersController));
 
 
 export default router;

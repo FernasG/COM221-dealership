@@ -1,1 +1,61 @@
-<h1>Stock</h1>
+<script src="scripts/stock.js"></script>
+
+<div class="model hide">
+    <div class="model-header">
+        <div class="model-title">
+            <h3>Add Stock Item</h3>
+        </div>
+        <div class="model-controls">
+            <button class="center" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+    <div class="model-body">
+        <div class="model-form">
+            <div class="form-line">
+                <div class="input-box">
+                    <label for="vehicle">Vehicle: </label>
+                    <select name="vehicle" id="vehicle" required>
+                        {{#each vehicles}}
+                        <option value="vehicleId{{this.id}}">{{this.manufacturer}} {{this.model}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <label for="quantity">Quantity: </label>
+                    <input type="number" name="quantity" id="quantity" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="model-footer">
+        <div class="model-buttons">
+            <button class="save" onclick="">Save</button>
+            <button class="cancel" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    {{#if stock}}
+    <div id="card-board">
+        {{#each stock}}
+        <div id="stockItemId{{this.id}}" class="card">
+            <div class="card-info">
+                <span class="vehicle">{{this.vehicle.manufacturer}} {{this.vehicle.model}}</span>
+                <span class="quantity">{{this.quantity}}</span>
+            </div>
+            <div class="card-control">
+                <button onclick=""><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="no-content">
+        No stock item
+    </div>
+    {{/if}}
+</div>

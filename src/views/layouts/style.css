@@ -327,19 +327,6 @@ div#card-board>div.card>div.card-info {
     border-right: 3px solid var(--gray-web);
 }
 
-div#card-board>div.card>div.card-info>span.name {
-    font-size: 13pt;
-    grid-column: 1 / -1;
-    font-weight: bolder;
-}
-
-div#card-board>div.card>div.card-info>span.price {
-    color: var(--mint-green);
-    display: flex;
-    font-weight: bold;
-    justify-content: flex-end;
-}
-
 div#card-board>div.card>div.card-control {
     width: 10%;
     height: 100%;

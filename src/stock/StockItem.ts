@@ -1,24 +1,31 @@
 import { Vehicle } from "@vehicles";
+import * as uuid from "uuid";
 
 export class StockItem {
-    private readonly _vehicle: Vehicle;
-    private _quantity: number;
+    private readonly id: string;
+    private readonly vehicle: Vehicle;
+    private quantity: number;
 
     constructor(vehicle: Vehicle, quantity: number) {
-        this._vehicle = vehicle;
-        this._quantity = quantity;
+        this.id = uuid.v4();
+        this.vehicle = vehicle;
+        this.quantity = quantity;
     }
 
-    get vehicle() {
-        return this._vehicle;
+    get getId() {
+        return this.id;
     }
 
-    get quantity() {
-        return this._quantity;
+    get getVehicle() {
+        return this.vehicle;
     }
 
-    set quantity(quantity: number) {
+    get getQuantity() {
+        return this.quantity;
+    }
+
+    set setQuantity(quantity: number) {
         if (quantity < 0) throw new Error(`Invalid quantity: ${quantity}`);
-        this._quantity = quantity;
+        this.quantity = quantity;
     }
 }
