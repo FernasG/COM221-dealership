@@ -1,5 +1,5 @@
 import { VehicleContent, VehicleMap, VehicleType } from "./Factory.interface";
-import { Car, Vehicle } from "@vehicles";
+import { Vehicle } from "@vehicles";
 
 export class VehicleFactory {
     public createVehicle(type: VehicleType, vehicle: VehicleContent): Vehicle | null {

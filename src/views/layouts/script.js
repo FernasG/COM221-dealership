@@ -1,8 +1,4 @@
-const axiosConfig = {
-    baseURL: 'http://dealership/'
-};
-
-const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+const axiosConfig = { baseURL: 'http://dealership/' };
 
 const getViewName = (() => {
     return document.location.pathname.replace('/', '');
@@ -97,24 +93,9 @@ const closeModal = (() => {
     toggleModelVisibility('show', 'hide');
 });
 
-const formatCurrency = ((event) => {
-    const input = document.querySelector('div.input-box>input#price');
-
-    if (!input) return null;
-
-    const { value } = input;
-
-    const valueFormatted = currencyFormatter.format(value).replace(/^[$]/gm, '');
-
-    console.log(Number(valueFormatted));
-
-    input.setAttribute('value', Number(valueFormatted));
-});
-
 (() => {
     const viewName = getViewName();
 
     selectMenuItem(viewName);
     setSectionTitle(viewName);
-    document.querySelector('div.input-box>input#price').addEventListener('keyup', formatCurrency);
 })();
