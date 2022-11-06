@@ -172,7 +172,7 @@ div#overlay {
     display: none;
 }
 
-div.model {
+div.modal {
     top: 50%;
     left: 50%;
     width: 650px;
@@ -184,7 +184,7 @@ div.model {
     transform: translate(-50%, -50%);
 }
 
-div.model>div.model-header {
+div.modal>div.modal-header {
     width: 100%;
     height: 50px;
     display: flex;
@@ -194,41 +194,41 @@ div.model>div.model-header {
     border-bottom: 1px solid var(--gray-web);
 }
 
-div.model>div.model-header>div {
+div.modal>div.modal-header>div {
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-div.model>div.model-header>div.model-controls {
+div.modal>div.modal-header>div.modal-controls {
     justify-content: flex-end;
 }
 
-div.model>div.model-header>div.model-controls>button,
-div.model>div.model-header>div.model-controls>button>* {
+div.modal>div.modal-header>div.modal-controls>button,
+div.modal>div.modal-header>div.modal-controls>button>* {
     color: var(--portland-orange);
     cursor: pointer;
     font-size: 20px;
 }
 
-div.model>div.model-body {
+div.modal>div.modal-body {
     width: 100%;
     border-bottom: 1px solid var(--gray-web);
 }
 
-div.model>div.model-body>div.model-form {
+div.modal>div.modal-body>div.modal-form {
     width: 100%;
     padding: 10px;
 }
 
-div.model>div.model-body>div.model-form>div.form-line {
+div.modal>div.modal-body>div.modal-form>div.form-line {
     margin: 20px 5px;
     display: flex;
     flex-direction: row;
 }
 
-div.model>div.model-body>div.model-form>div.form-line>div.input-box {
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box {
     width: 100%;
     height: 70px;
     margin: 0 5px;
@@ -236,13 +236,13 @@ div.model>div.model-body>div.model-form>div.form-line>div.input-box {
     flex-direction: column;
 }
 
-div.model>div.model-body>div.model-form>div.form-line>div.input-box>label {
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>label {
     margin-bottom: 7px;
     font-weight: 600;
 }
 
-div.model>div.model-body>div.model-form>div.form-line>div.input-box>input,
-div.model>div.model-body>div.model-form>div.form-line>div.input-box>select {
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>input,
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>select {
     height: 35px;
     border: 2px solid var(--neon-blue);
     outline: none;
@@ -251,24 +251,24 @@ div.model>div.model-body>div.model-form>div.form-line>div.input-box>select {
     border-radius: 5px;
 }
 
-div.model>div.model-body>div.model-form>div.form-line>div.input-box>input:focus,
-div.model>div.model-body>div.model-form>div.form-line>div.input-box>select:focus {
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>input:focus,
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>select:focus {
     border: 2px solid var(--maya-blue);
     outline: none;
 }
 
-div.model>div.model-body>div.model-form>div.form-line>div.input-box>input.warning,
-div.model>div.model-body>div.model-form>div.form-line>div.input-box>select.warning {
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>input.warning,
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>select.warning {
     border: 2px solid var(--portland-orange);
     outline: none;
 }
 
-div.model>div.model-footer {
+div.modal>div.modal-footer {
     width: 100%;
     height: 50px;
 }
 
-div.model>div.model-footer>div.model-buttons {
+div.modal>div.modal-footer>div.modal-buttons {
     width: 100%;
     height: 100%;
     display: flex;
@@ -276,7 +276,7 @@ div.model>div.model-footer>div.model-buttons {
     justify-content: space-around;
 }
 
-div.model>div.model-footer>div.model-buttons>button {
+div.modal>div.modal-footer>div.modal-buttons>button {
     width: 70px;
     cursor: pointer;
     padding: 7px;
@@ -286,20 +286,20 @@ div.model>div.model-footer>div.model-buttons>button {
     border-radius: 5px;
 }
 
-div.model>div.model-footer>div.model-buttons>button.save {
+div.modal>div.modal-footer>div.modal-buttons>button.save {
     background: var(--neon-blue);
 }
 
-div.model>div.model-footer>div.model-buttons>button.save:hover {
+div.modal>div.modal-footer>div.modal-buttons>button.save:hover {
     background: var(--maya-blue);
 }
 
-div.model>div.model-footer>div.model-buttons>button.cancel {
+div.modal>div.modal-footer>div.modal-buttons>button.cancel {
     color: var(--portland-orange);
     border: 2px solid var(--portland-orange);
 }
 
-div.model>div.model-footer>div.model-buttons>button.cancel:hover {
+div.modal>div.modal-footer>div.modal-buttons>button.cancel:hover {
     color: var(--magnolia);
     background: var(--portland-orange);
 }
@@ -339,8 +339,21 @@ div#card-board>div.card>div.card-control>button {
     width: 100%;
     height: 100%;
     cursor: pointer;
+    transition: all 500ms;
 }
 
-div#card-board>div.card>div.card-control>button>i {
-    color: var(--portland-orange);
+div#card-board>div.card>div.card-control>button:first-child {
+    border-top-right-radius: 5px;
+}
+
+div#card-board>div.card>div.card-control>button:last-child {
+    border-bottom-right-radius: 5px;
+}
+
+div#card-board>div.card>div.card-control>button.delete:hover {
+    background: var(--portland-orange);
+}
+
+div#card-board>div.card>div.card-control>button.update:hover {
+    background: var(--azure);
 }

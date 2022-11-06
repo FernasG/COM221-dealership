@@ -1,22 +1,30 @@
+<style>
+    div#card-board>div.card>div.card-info>span.vehicle {
+        font-size: 13pt;
+        grid-column: 1 / -1;
+        font-weight: bolder;
+    }
+</style>
+
 <script src="scripts/stock.js"></script>
 
-<div class="model hide">
-    <div class="model-header">
-        <div class="model-title">
+<div class="modal hide" id="create-stock-item">
+    <div class="modal-header">
+        <div class="modal-title">
             <h3>Add Stock Item</h3>
         </div>
-        <div class="model-controls">
+        <div class="modal-controls">
             <button class="center" onclick="closeModal()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
     </div>
-    <div class="model-body">
-        <div class="model-form">
+    <div class="modal-body">
+        <div class="modal-form">
             <div class="form-line">
                 <div class="input-box">
-                    <label for="vehicle">Vehicle: </label>
-                    <select name="vehicle" id="vehicle" required>
+                    <label for="vehicleId">Vehicle: </label>
+                    <select name="vehicleId" id="vehicleId" required>
                         {{#each vehicles}}
                         <option value="vehicleId{{this.id}}">{{this.manufacturer}} {{this.model}}</option>
                         {{/each}}
@@ -30,9 +38,9 @@
             </div>
         </div>
     </div>
-    <div class="model-footer">
-        <div class="model-buttons">
-            <button class="save" onclick="">Save</button>
+    <div class="modal-footer">
+        <div class="modal-buttons">
+            <button class="save" onclick="createStockItem()">Save</button>
             <button class="cancel" onclick="closeModal()">Cancel</button>
         </div>
     </div>
@@ -45,10 +53,11 @@
         <div id="stockItemId{{this.id}}" class="card">
             <div class="card-info">
                 <span class="vehicle">{{this.vehicle.manufacturer}} {{this.vehicle.model}}</span>
-                <span class="quantity">{{this.quantity}}</span>
+                <span class="quantity">Units: {{this.quantity}}</span>
             </div>
             <div class="card-control">
-                <button onclick=""><i class="fa-solid fa-trash"></i></button>
+                <button class="update" onclick="showUpdateStockItemModal('{{this.id}}')"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="delete" onclick="deleteStockItem('{{this.id}}')"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
         {{/each}}

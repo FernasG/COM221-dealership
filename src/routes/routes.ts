@@ -21,7 +21,10 @@ router.patch('/vehicles', vehicleController.updateVehicle.bind(vehicleController
 router.get('/system', systemController.listSystem.bind(systemController));
 
 router.get('/stock', stockController.listStock.bind(stockController));
+router.get('/stock/:id', stockController.findStockItem.bind(stockController));
 router.post('/stock', stockController.createStock.bind(stockController));
+router.delete('/stock/:id', stockController.deleteStockItem.bind(stockController));
+router.patch('/stock', stockController.updateStockItem.bind(stockController));
 
 router.get('/users', usersController.listUsers.bind(usersController));
 

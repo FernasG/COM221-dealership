@@ -11,6 +11,16 @@ export class StockController extends BaseController {
         return res.render('Stock', { stock, vehicles });
     }
 
+    public async findStockItem(req: Request, res: Response) {
+        const { id } = req.params;
+
+        const stockItem = this.App.getStock.find(stockItem => { return stockItem.getId === id });
+
+        if (!stockItem) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Stock Item not found.' });
+
+        return res.status(HttpStatus.OK).json({ stockItem });
+    }
+
     public async createStock(req: Request, res: Response) {
         const { vehicleId, quantity } = req.body
 
@@ -25,5 +35,29 @@ export class StockController extends BaseController {
         this.App.insertStockItem(stockItem);
 
         return res.status(HttpStatus.CREATED).json({ message: 'Stock Item created.', stockItem });
+    }
+
+    public async deleteStockItem(req: Request, res: Response) {
+        const { id } = req.params;
+
+        const stockItem = this.App.getStock.find(stockItem => { return stockItem.getId === id });
+
+        if (!stockItem) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Stock Item not found.' });
+
+        this.App.removeStockItem(stockItem);
+
+        res.status(200).json({ message: 'Stock Item deleted' });
+    }
+
+    public async updateStockItem(req: Request, res: Response) {
+        const { id, quantity } = req.body;
+
+        const stockItem = this.App.getStock.find(stockItem => { return stockItem.getId === id });
+
+        if (!stockItem) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Stock Item not found.' });
+
+        if (quantity) stockItem.setQuantity = quantity;
+
+        return res.status(HttpStatus.OK).json({ message: 'Stock Item updated.' });
     }
 }

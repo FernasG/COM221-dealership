@@ -14,10 +14,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.js"
         integrity="sha512-alPPV0FSr6mYlSRf3QgbZmEqL7o99K5e30hGX+FrqDwMhnTngIeshurUAuKFDG28IzPSCSWTwmEfN0wBjg19KQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
-    <script src="scripts/model.js"></script>
+    <script src="scripts/modal.js"></script>
     <div class="hide" id="overlay" onclick="closeModal()"></div>
 
     <main>
@@ -60,7 +63,7 @@
                     <h2></h2>
                 </div>
                 <div class="buttons">
-                    <button class="center" onclick="showModel()">
+                    <button class="center" onclick="showModal()">
                         <span>Add</span>
                         <i class="fa-solid fa-plus"></i>
                     </button>
@@ -70,7 +73,7 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

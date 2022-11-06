@@ -15,28 +15,28 @@
 
 <script src="scripts/vehicles.js"></script>
 
-<div class="model hide">
-    <div class="model-header">
-        <div class="model-title">
+<div class="modal hide">
+    <div class="modal-header">
+        <div class="modal-title">
             <h3>Add Vehicle</h3>
         </div>
-        <div class="model-controls">
+        <div class="modal-controls">
             <button class="center" onclick="closeModal()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
     </div>
-    <div class="model-body">
-        <div class="model-form">
+    <div class="modal-body">
+        <div class="modal-form">
             <div class="form-line">
-                <div class="input-box">
-                    <label for="vehicle_model">Model: </label>
-                    <input type="text" name="model" id="vehicle_model" required>
-                </div>
-
                 <div class="input-box">
                     <label for="manufacturer">Manufacturer: </label>
                     <input type="text" name="manufacturer" id="manufacturer" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="vehicle_model">Model: </label>
+                    <input type="text" name="model" id="vehicle_model" required>
                 </div>
             </div>
 
@@ -61,8 +61,8 @@
             </div>
         </div>
     </div>
-    <div class="model-footer">
-        <div class="model-buttons">
+    <div class="modal-footer">
+        <div class="modal-buttons">
             <button class="save" onclick="createVehicle()">Save</button>
             <button class="cancel" onclick="closeModal()">Cancel</button>
         </div>
@@ -80,7 +80,7 @@
                 <span class="price">{{currency this.price}}</span>
             </div>
             <div class="card-control">
-                <button onclick="deleteVehicle('{{this.id}}')"><i class="fa-solid fa-trash"></i></button>
+                <button class="delete" onclick="deleteVehicle('{{this.id}}')"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
         {{/each}}
