@@ -1,6 +1,7 @@
+import { Observer } from "./Observer";
 import * as uuid from "uuid";
 
-export class User {
+export class User extends Observer {
     private readonly id: string;
     private readonly cpf: string;
     private name: string;
@@ -8,6 +9,7 @@ export class User {
     private birthdate: Date;
 
     constructor(cpf: string, name: string, email: string, birthdate: Date) {
+        super();
         this.id = uuid.v4();
         this.cpf = cpf;
         this.name = name;
@@ -15,35 +17,39 @@ export class User {
         this.birthdate = birthdate;
     }
 
-    get getId() {
+    public get getId() {
         return this.id;
     }
 
-    get getCpf() {
+    public get getCpf() {
         return this.cpf;
     }
 
-    get getName() {
+    public get getName() {
         return this.name;
     }
 
-    get getEmail() {
+    public get getEmail() {
         return this.email;
     }
 
-    get getBirthdate() {
+    public get getBirthdate() {
         return this.birthdate;
     }
 
-    set setName(name: string) {
+    public set setName(name: string) {
         this.name = name;
     }
 
-    set setEmail(email: string) {
+    public set setEmail(email: string) {
         this.email = email;
     }
 
-    set setBirthdate(birthdate: Date) {
+    public set setBirthdate(birthdate: Date) {
         this.birthdate = birthdate;
+    }
+
+    public async update(quantity: number): Promise<void> {
+        throw new Error("Method not implemented.");
     }
 }
