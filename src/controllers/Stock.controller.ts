@@ -1,5 +1,5 @@
-import { BaseController } from "./BaseController";
 import { Request, Response } from "express";
+import { BaseController } from "./BaseController";
 import { HttpStatus } from "./Controllers.interface";
 import { StockItem } from "@stock";
 
@@ -24,7 +24,7 @@ export class StockController extends BaseController {
     public async createStock(req: Request, res: Response) {
         const { vehicleId, quantity } = req.body
 
-        if (!vehicleId || !quantity) return res.status(HttpStatus.BAD_REQUEST).json({ message: '' });
+        if (!vehicleId || !quantity) return res.status(HttpStatus.BAD_REQUEST).json({ message: 'Invalid request.' });
 
         const vehicle = this.App.getVehicles.find(vehicle => { return vehicle.getId === vehicleId; });
 
@@ -46,7 +46,7 @@ export class StockController extends BaseController {
 
         this.App.removeStockItem(stockItem);
 
-        res.status(200).json({ message: 'Stock Item deleted' });
+        res.status(200).json({ message: 'Stock Item deleted.' });
     }
 
     public async updateStockItem(req: Request, res: Response) {

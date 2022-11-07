@@ -3,7 +3,7 @@ import { BaseController } from "./BaseController";
 import { HttpStatus } from "./Controllers.interface";
 import { Request, Response } from "express";
 
-export class VehicleController extends BaseController {
+export class VehiclesController extends BaseController {
     private readonly vehicleFactory: VehicleFactory = new VehicleFactory();
 
     public async listVehicles(req: Request, res: Response) {
@@ -15,7 +15,7 @@ export class VehicleController extends BaseController {
     public async findVehicle(req: Request, res: Response) {
         const { id } = req.params;
 
-        const vehicle = this.App.getVehicles.find(item => { return item.getId === id });
+        const vehicle = this.App.getVehicles.find(vehicle => { return vehicle.getId === id });
 
         if (!vehicle) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Vehicle not found.' });
 
@@ -25,13 +25,13 @@ export class VehicleController extends BaseController {
     public async createVehicle(req: Request, res: Response) {
         const { model, manufacturer, manufacturing_date, price, type } = req.body;
 
-        if (!Object.keys(VehicleType).includes(type)) return res.status(HttpStatus.BAD_REQUEST).json({ message: '' });
+        if (!Object.keys(VehicleType).includes(type)) return res.status(HttpStatus.BAD_REQUEST).json({ message: 'Invalid request.' });
 
         const vehicleContent: VehicleContent = { model, manufacturer, manufacturing_date, price };
 
         const vehicle = this.vehicleFactory.createVehicle(type, vehicleContent);
 
-        if (!vehicle) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: '' });
+        if (!vehicle) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Failed to create vehicle.' });
 
         this.App.insertVehicle(vehicle);
 
@@ -47,7 +47,7 @@ export class VehicleController extends BaseController {
 
         this.App.removeVehicle(vehicle);
 
-        res.status(200).json({ message: 'Vehicle deleted' });
+        res.status(200).json({ message: 'Vehicle deleted.' });
     }
 
     public async updateVehicle(req: Request, res: Response) {
