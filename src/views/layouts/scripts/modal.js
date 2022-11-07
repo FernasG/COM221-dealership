@@ -17,7 +17,7 @@ const closeModal = (() => {
 });
 
 const getFormData = ((formContent = {}, regexClean = null) => {
-    const modalForm = document.querySelector('div.modal>div.modal-body>div.modal-form');
+    const modalForm = document.querySelector('div.modal.show>div.modal-body>div.modal-form');
 
     if (!modalForm) return null;
 
@@ -47,6 +47,8 @@ const getFormData = ((formContent = {}, regexClean = null) => {
 
         formContent[name] = regexClean ? value.replace(regexClean, '') : value;
     }
+
+    if ('undefined' in formContent) delete formContent.undefined;
 
     return warnings ? null : formContent;
 });
@@ -127,6 +129,7 @@ const createModalBody = ((content) => {
                 inputBox.appendChild(select);
             } else {
                 const input = document.createElement('input');
+                
                 input.setAttribute('type', type);
                 input.setAttribute('name', field);
                 input.setAttribute('id', field);

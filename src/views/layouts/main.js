@@ -22,9 +22,23 @@ const setSectionTitle = ((viewName) => {
     sectionTitle.innerHTML = title;
 });
 
+const applyCurrencyMask = (() => {
+    const inputCurrency = document.querySelector('input.currency');
+
+    if (!inputCurrency) return null;
+
+    inputCurrency.addEventListener('keyup', (event) => {
+        const { value } = inputCurrency;
+
+        const formattedValue = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    });
+});
+
 (() => {
     const viewName = getViewName();
 
     selectMenuItem(viewName);
     setSectionTitle(viewName);
+
+    applyCurrencyMask();
 })();

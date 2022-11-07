@@ -12,7 +12,13 @@ const createStockItem = (async () => {
 });
 
 const updateStockItem = (async (stockItemId) => {
-    console.log(stockItemId);
+    let stockRequest = { stockItemId: null, quantity: null };
+
+    stockRequest = getFormData(stockRequest);
+
+    const updatePromise = await axios.patch('stock', stockRequest, axiosConfig).catch(err => err);
+
+    if (updatePromise.status === 200) document.location.reload();
 });
 
 const deleteStockItem = (async (stockItemId) => {
@@ -43,9 +49,9 @@ const showUpdateStockItemModal = (async (stockItemId) => {
         title: 'Update Stock Item', saveFunction: 'updateStockItem()',
         content: [
             [
-                { label: 'Vehicle', field: 'vehicle', type: 'select', required: true, disabled: true, selectOptions: [{ value: null, text: `${manufacturer} ${model}` }] },
+                { label: 'Vehicle', type: 'select', disabled: true, selectOptions: [{ value: null, text: `${manufacturer} ${model}` }] },
                 { label: 'Quantity', field: 'quantity', type: 'number', required: true, value: quantity },
-                { field: 'stockItemId', type: 'hidden', disabled: true, value: id }
+                { field: 'id', type: 'hidden', disabled: true, value: id }
             ]
         ]
     }));
