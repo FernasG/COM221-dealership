@@ -56,15 +56,17 @@
                 <span class="quantity">Units: {{this.quantity}}</span>
             </div>
             <div class="card-control">
-                <button class="update" onclick="showUpdateStockItemModal('{{this.id}}')"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="delete" onclick="deleteStockItem('{{this.id}}')"><i class="fa-solid fa-trash"></i></button>
+                <button class="update" onclick="showUpdateStockItemModal('{{this.id}}')"><i
+                        class="fa-solid fa-pen-to-square"></i></button>
+                <button class="delete" onclick="deleteStockItem('{{this.id}}')"><i
+                        class="fa-solid fa-trash"></i></button>
             </div>
         </div>
         {{/each}}
     </div>
     {{else}}
     <div class="no-content">
-        No stock item
+        <p>No stock.</p>
     </div>
     {{/if}}
 </div>

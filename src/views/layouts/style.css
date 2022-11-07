@@ -154,6 +154,16 @@ div#section-title>div.buttons>button>span {
     margin-right: 5px;
 }
 
+div.no-content {
+    border: 3px solid var(--gray-web);
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
+    background: var(--gunmental);
+}
+
 div#overlay {
     top: 0;
     left: 0;

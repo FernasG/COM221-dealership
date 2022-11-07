@@ -1,7 +1,7 @@
 import { VehicleFactory, VehicleType, VehicleContent } from "@factory";
+import { Request, Response } from "express";
 import { BaseController } from "./BaseController";
 import { HttpStatus } from "./Controllers.interface";
-import { Request, Response } from "express";
 
 export class VehiclesController extends BaseController {
     private readonly vehicleFactory: VehicleFactory = new VehicleFactory();
@@ -44,6 +44,10 @@ export class VehiclesController extends BaseController {
         const vehicle = this.App.getVehicles.find(vehicle => { return vehicle.getId === id });
 
         if (!vehicle) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Vehicle not found.' });
+
+        const stockItems = this.App.getStock.filter(stockItem => { return stockItem.getVehicle.getId === vehicle.getId; });
+
+        stockItems.forEach(stockItem => this.App.removeStockItem(stockItem));
 
         this.App.removeVehicle(vehicle);
 

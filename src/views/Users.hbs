@@ -1,1 +1,88 @@
-<h1>Usuários</h1>
+<style>
+    table#users-table {
+        width: 100%;
+        padding: 5px;
+        background: var(--rich-black-flogra);
+        border: 3px solid var(--neon-blue);
+        border-radius: 5px;
+    }
+
+    table#users-table>thead>tr {
+        text-align: left;
+    }
+</style>
+
+<script src="scripts/users.js"></script>
+
+<div class="modal hide">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h3>Add User</h3>
+        </div>
+        <div class="modal-controls">
+            <button class="center" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="modal-form">
+            <div class="form-line">
+                <div class="input-box">
+                    <label for="name">Name: </label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" id="email" required>
+                </div>
+            </div>
+
+            <div class="form-line">
+                <div class="input-box">
+                    <label for="cpf">CPF: </label>
+                    <input type="text" name="cpf" id="cpf" maxlength="14" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="birthdate">Birthdate: </label>
+                    <input type="date" name="birthdate" id="birthdate" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-buttons">
+            <button class="save" onclick="createUser()">Save</button>
+            <button class="cancel" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+{{#if users}}
+<table id="users-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Birthdate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.cpf}}</td>
+            <td>{{this.birthdate}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<div class="no-content">
+    <p>No users.</p>
+</div>
+{{/if}}
