@@ -34,8 +34,21 @@ const showUpdateStockItemModal = (async (stockItemId) => {
 
     const { data: { stockItem } } = findPromise;
 
+    if (!stockItem) return null;
+
+    const { id, quantity, vehicle: { manufacturer, model } } = stockItem;
+
     document.querySelector('div#overlay').classList.replace('hide', 'show');
-    document.querySelector('main').appendChild(createModal({ title: 'Salve', content: [], saveFunction: 'updateStockItem()' }));
+    document.querySelector('main').appendChild(createModal({
+        title: 'Update Stock Item', saveFunction: 'updateStockItem()',
+        content: [
+            [
+                { label: 'Vehicle', field: 'vehicle', type: 'select', required: true, disabled: true, selectOptions: [{ value: null, text: `${manufacturer} ${model}` }] },
+                { label: 'Quantity', field: 'quantity', type: 'number', required: true, value: quantity },
+                { field: 'stockItemId', type: 'hidden', disabled: true, value: id }
+            ]
+        ]
+    }));
 
     console.log();
 });

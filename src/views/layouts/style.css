@@ -251,6 +251,10 @@ div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>select {
     border-radius: 5px;
 }
 
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box:has(input[type=hidden], select[type=hidden]) {
+    display: none;
+}
+
 div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>input:focus,
 div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>select:focus {
     border: 2px solid var(--maya-blue);

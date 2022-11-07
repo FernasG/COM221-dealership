@@ -94,11 +94,53 @@ const createModalBody = ((content) => {
         formLine.classList.add('form-line');
 
         inputArray.forEach((inputParams) => {
-            const inputBox = document.querySelector('div');
+            const inputBox = document.createElement('div');
             inputBox.classList.add('input-box');
 
-            const { label: labelContent, field, required } = inputParams;
+            const { label: labelText, field, type, required, disabled, value } = inputParams;
+
+            if (labelText) {
+                const label = document.createElement('label');
+                label.textContent = `${labelText}: `;
+                label.setAttribute('for', field);
+                inputBox.appendChild(label);
+            }
+
+            if (type === 'select') {
+                const { selectOptions } = inputParams;
+
+                const select = document.createElement('select');
+                selectOptions.forEach((selectOption) => {
+                    const { value, text } = selectOption;
+                    const option = document.createElement('option');
+                    option.setAttribute('value', value);
+                    option.textContent = text;
+
+                    select.appendChild(option);
+                });
+
+                select.setAttribute('name', field);
+                select.setAttribute('id', field);
+                if (required) select.setAttribute('required', '');
+                if (disabled) select.setAttribute('disabled', '');
+
+                inputBox.appendChild(select);
+            } else {
+                const input = document.createElement('input');
+                input.setAttribute('type', type);
+                input.setAttribute('name', field);
+                input.setAttribute('id', field);
+                if (required) input.setAttribute('required', '');
+                if (disabled) input.setAttribute('disabled', '');
+                if (value) input.setAttribute('value', value);
+
+                inputBox.appendChild(input);
+            }
+
+            formLine.appendChild(inputBox);
         });
+
+        modalForm.appendChild(formLine);
     }
 
     modalBody.appendChild(modalForm);
