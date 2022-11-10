@@ -66,13 +66,25 @@ export class StockController extends BaseController {
     }
 
     public async updateStockItem(req: Request, res: Response) {
-        const { id, quantity } = req.body;
+        const { id, quantity, users } = req.body;
 
         const stockItem = this.App.getStock.find(stockItem => { return stockItem.getId === id });
 
         if (!stockItem) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Stock Item not found.' });
 
         if (quantity) stockItem.setQuantity = quantity;
+
+        stockItem.getUsersWishlist.clear();
+
+        if (Array.isArray(users) && users.length) {
+            for (const userId of users) {
+                const user = this.App.getUsers.find((user) => { return user.getId === userId; });
+
+                if (!user) continue;
+
+                stockItem.register(user);
+            }
+        }
 
         return res.status(HttpStatus.OK).json({ message: 'Stock Item updated.' });
     }

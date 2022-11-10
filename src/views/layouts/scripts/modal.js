@@ -6,14 +6,18 @@ const toggleModalVisibility = ((before, after) => {
 
     modal.classList.replace(before, after);
     overlay.classList.replace(before, after);
+
+    return modal;
 });
 
 const showModal = (() => {
     toggleModalVisibility('hide', 'show');
 });
 
-const closeModal = (() => {
-    toggleModalVisibility('show', 'hide');
+const closeModal = ((removeModal) => {
+    const modal = toggleModalVisibility('show', 'hide');
+
+    if (modal && removeModal) modal.remove();
 });
 
 const isCheckbox = ((inputBox) => {
@@ -94,7 +98,7 @@ const createModalHeader = ((title) => {
 
     const button = document.createElement('button');
     button.classList.add('center');
-    button.setAttribute('onclick', 'closeModal()');
+    button.setAttribute('onclick', 'closeModal(true)');
 
     const i = document.createElement('i');
     i.classList.add('fa-solid', 'fa-xmark');
@@ -164,19 +168,19 @@ const createModalBody = ((content) => {
                     const checkItem = document.createElement('div');
                     checkItem.classList.add('check-item');
 
-                    const label = document.createElement('label');
-                    label.textContent = checkboxLabel;
-                    label.setAttribute('for', checkTag);
-                    checkItem.appendChild(label);
-
                     const checkbox = document.createElement('input');
                     checkbox.setAttribute('id', checkTag);
                     checkbox.setAttribute('type', type);
                     checkbox.setAttribute('name', field);
-                    checkbox.setAttribute('value', checkTag);
+                    checkbox.setAttribute('value', value);
                     if (checked) checkbox.setAttribute('checked', '');
 
                     checkItem.appendChild(checkbox);
+
+                    const label = document.createElement('label');
+                    label.textContent = checkboxLabel;
+                    label.setAttribute('for', checkTag);
+                    checkItem.appendChild(label);
 
                     checkboxList.appendChild(checkItem);
                 }
@@ -221,7 +225,7 @@ const createModalFooter = ((saveFunction) => {
     const buttonCancel = document.createElement('button');
     buttonCancel.textContent = 'Cancel';
     buttonCancel.classList.add('cancel');
-    buttonCancel.setAttribute('onclick', 'closeModal()');
+    buttonCancel.setAttribute('onclick', 'closeModal(true)');
 
     modalButtons.appendChild(buttonSave);
     modalButtons.appendChild(buttonCancel);

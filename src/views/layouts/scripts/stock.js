@@ -12,13 +12,13 @@ const createStockItem = (async () => {
 });
 
 const updateStockItem = (async (stockItemId) => {
-    let stockRequest = { stockItemId: null, quantity: null };
+    let stockRequest = { stockItemId: null, quantity: null, users: null };
 
     stockRequest = getFormData(stockRequest);
 
     const updatePromise = await axios.patch('stock', stockRequest, axiosConfig).catch(err => err);
 
-    // if (updatePromise.status === 200) document.location.reload();
+    if (updatePromise.status === 200) document.location.reload();
 });
 
 const deleteStockItem = (async (stockItemId) => {
@@ -75,7 +75,7 @@ const showUpdateStockItemModal = (async (stockItemId) => {
                 { field: 'id', type: 'hidden', disabled: true, value: id }
             ],
             [
-                { label: 'Wishlist', type: 'checkbox', field: 'users', prefix: 'userId', checkboxItems }
+                { label: 'Wishlist', type: 'checkbox', field: 'users', prefix: 'userIdUpdate', checkboxItems }
             ]
         ]
     });
