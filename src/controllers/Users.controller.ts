@@ -5,7 +5,11 @@ import { User } from "@users";
 
 export class UsersController extends BaseController {
     public async listUsers(req: Request, res: Response) {
+        const { type } = req.query;
+
         const users = this.App.getUsers;
+
+        if (type && type === 'json') return res.status(200).json({ users });
 
         return res.render('Users', { users });
     }

@@ -240,9 +240,9 @@ div.modal>div.modal-body>div.modal-form>div.form-line {
 
 div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box {
     width: 100%;
-    height: 70px;
     margin: 0 5px;
     display: flex;
+    min-height: 70px;
     flex-direction: column;
 }
 
@@ -275,6 +275,37 @@ div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>input.warnin
 div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>select.warning {
     border: 2px solid var(--portland-orange);
     outline: none;
+}
+
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>div.checkbox-list {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>div.checkbox-list>div.check-item {
+    border: 3px solid var(--neon-blue);
+    transition: all 200ms;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>div.checkbox-list>div.check-item>input[type=checkbox] {
+    display: none;
+}
+
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>div.checkbox-list>div.check-item>label {
+    cursor: pointer;
+    display: block;
+    padding: 5px 10px;
+}
+
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>div.checkbox-list>div.check-item:has(input:checked) {
+    background: var(--neon-blue);
+}
+
+div.modal>div.modal-body>div.modal-form>div.form-line>div.input-box>div.checkbox-list>div.check-item:hover {
+    border: 3px solid var(--maya-blue);
 }
 
 div.modal>div.modal-footer {

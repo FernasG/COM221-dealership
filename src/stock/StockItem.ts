@@ -34,12 +34,12 @@ export class StockItem extends Observable {
     }
 
     public set setQuantity(quantity: number) {
-        if (quantity < 0) throw new Error(`Invalid quantity: ${quantity}`);
         this.quantity = quantity;
+        this.notify();
     }
 
-    public async notify(): Promise<void> {
-        throw new Error("Method not implemented.");
+    protected notify(): void {
+        this.usersWishlist.forEach((user) => { user.update(this.quantity); });
     }
 
     public register(observer: Observer): void {
@@ -48,5 +48,13 @@ export class StockItem extends Observable {
 
     public cancelRegister(observer: Observer): void {
         this.usersWishlist.delete(observer);
+    }
+
+    public toJSON() {
+        const { id, vehicle, quantity, usersWishlist } = this;
+
+        const stockItem = { id, vehicle, quantity, usersWishlist: Array.from(usersWishlist) };
+
+        return stockItem;
     }
 }

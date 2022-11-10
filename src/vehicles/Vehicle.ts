@@ -51,5 +51,5 @@ export abstract class Vehicle {
         this.manufacturing_date = manufacturing_date;
     }
 
-    abstract calcIPVA(): number;
+    abstract calculateIPVA(): number;
 }

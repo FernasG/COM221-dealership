@@ -50,6 +50,6 @@ export class User extends Observer {
     }
 
     public async update(quantity: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        console.log(`Q: ${quantity}`);
     }
 }

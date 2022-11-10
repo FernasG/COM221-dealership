@@ -5,10 +5,16 @@ import { StockItem } from "@stock";
 
 export class StockController extends BaseController {
     public async listStock(req: Request, res: Response) {
+        const { type } = req.query;
+
         const stock = this.App.getStock;
+
+        if (type && type === 'json') return res.status(200).json({ stock });
+
+        const users = this.App.getUsers;
         const vehicles = this.App.getVehicles;
 
-        return res.render('Stock', { stock, vehicles });
+        return res.render('Stock', { stock, users, vehicles });
     }
 
     public async findStockItem(req: Request, res: Response) {
@@ -22,7 +28,7 @@ export class StockController extends BaseController {
     }
 
     public async createStock(req: Request, res: Response) {
-        const { vehicleId, quantity } = req.body
+        const { vehicleId, quantity, users } = req.body
 
         if (!vehicleId || !quantity) return res.status(HttpStatus.BAD_REQUEST).json({ message: 'Invalid request.' });
 
@@ -31,6 +37,16 @@ export class StockController extends BaseController {
         if (!vehicle) return res.status(HttpStatus.NOT_FOUND).json({ message: 'Vehicle not found.' });
 
         const stockItem = new StockItem(vehicle, quantity);
+
+        if (Array.isArray(users) && users.length) {
+            for (const userId of users) {
+                const user = this.App.getUsers.find((user) => { return user.getId === userId; });
+
+                if (!user) continue;
+
+                stockItem.register(user);
+            }
+        }
 
         this.App.insertStockItem(stockItem);
 

@@ -7,7 +7,11 @@ export class VehiclesController extends BaseController {
     private readonly vehicleFactory: VehicleFactory = new VehicleFactory();
 
     public async listVehicles(req: Request, res: Response) {
+        const { type } = req.query;
+
         const vehicles = this.App.getVehicles;
+
+        if (type && type === 'json') return res.status(200).json({ vehicles });
 
         return res.render('Vehicles', { vehicles });
     }

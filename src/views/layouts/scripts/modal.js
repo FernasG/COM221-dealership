@@ -16,6 +16,16 @@ const closeModal = (() => {
     toggleModalVisibility('show', 'hide');
 });
 
+const isCheckbox = ((inputBox) => {
+    const checkBoxlist = inputBox.querySelector('div.checkbox-list');
+
+    if (!checkBoxlist) return false;
+
+    const checkItems = checkBoxlist.querySelectorAll('div.check-item');
+
+    return (checkItems && checkItems.length > 0);
+});
+
 const getFormData = ((formContent = {}, regexClean = null) => {
     const modalForm = document.querySelector('div.modal.show>div.modal-body>div.modal-form');
 
@@ -35,17 +45,31 @@ const getFormData = ((formContent = {}, regexClean = null) => {
 
         if (!inputTag) continue;
 
-        const HTMLTag = inputBox.querySelector(inputTag);
+        if (isCheckbox(inputBox)) {
+            const checkboxes = inputBox.querySelectorAll('input[type=checkbox]');
 
-        const { name, value, required } = HTMLTag;
+            for (const checkbox of checkboxes) {
+                if (!checkbox.checked) continue;
 
-        if (required && !value) {
-            HTMLTag.classList.add('warning');
-            warnings = true;
-            continue
+                const { name, value } = checkbox;
+
+                if (!formContent[name]) formContent[name] = []
+
+                formContent[name].push(regexClean ? value.replace(regexClean, '') : value);
+            }
+        } else {
+            const HTMLTag = inputBox.querySelector(inputTag);
+
+            const { name, value, required } = HTMLTag;
+
+            if (required && !value) {
+                HTMLTag.classList.add('warning');
+                warnings = true;
+                continue
+            }
+
+            formContent[name] = regexClean ? value.replace(regexClean, '') : value;
         }
-
-        formContent[name] = regexClean ? value.replace(regexClean, '') : value;
     }
 
     if ('undefined' in formContent) delete formContent.undefined;
@@ -127,9 +151,40 @@ const createModalBody = ((content) => {
                 if (disabled) select.setAttribute('disabled', '');
 
                 inputBox.appendChild(select);
+            } else if (type === 'checkbox') {
+                const { prefix, checkboxItems } = inputParams;
+
+                const checkboxList = document.createElement('div');
+                checkboxList.classList.add('checkbox-list');
+
+                for (const checkboxItem of checkboxItems) {
+                    const { value, label: checkboxLabel, checked } = checkboxItem;
+                    const checkTag = `${prefix}${value}`;
+
+                    const checkItem = document.createElement('div');
+                    checkItem.classList.add('check-item');
+
+                    const label = document.createElement('label');
+                    label.textContent = checkboxLabel;
+                    label.setAttribute('for', checkTag);
+                    checkItem.appendChild(label);
+
+                    const checkbox = document.createElement('input');
+                    checkbox.setAttribute('id', checkTag);
+                    checkbox.setAttribute('type', type);
+                    checkbox.setAttribute('name', field);
+                    checkbox.setAttribute('value', checkTag);
+                    if (checked) checkbox.setAttribute('checked', '');
+
+                    checkItem.appendChild(checkbox);
+
+                    checkboxList.appendChild(checkItem);
+                }
+
+                inputBox.appendChild(checkboxList);
             } else {
                 const input = document.createElement('input');
-                
+
                 input.setAttribute('type', type);
                 input.setAttribute('name', field);
                 input.setAttribute('id', field);

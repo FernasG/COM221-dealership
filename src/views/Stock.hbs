@@ -36,6 +36,21 @@
                     <input type="number" name="quantity" id="quantity" required>
                 </div>
             </div>
+            {{#if users}}
+            <div class="form-line">
+                <div class="input-box">
+                    <label>Wishlist: </label>
+                    <div class="checkbox-list">
+                        {{#each users}}
+                        <div class="check-item">
+                            <input type="checkbox" name="users" id="userId{{this.id}}" value="{{this.id}}">
+                            <label for="userId{{this.id}}">{{this.name}}</label>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            {{/if}}
         </div>
     </div>
     <div class="modal-footer">

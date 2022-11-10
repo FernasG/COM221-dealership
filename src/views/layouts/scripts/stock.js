@@ -1,6 +1,6 @@
 const createStockItem = (async () => {
     const regexClean = new RegExp(/^(vehicleId)/gm);
-    let stockRequest = { vehicleId: null, quantity: null };
+    let stockRequest = { vehicleId: null, quantity: null, users: null };
 
     stockRequest = getFormData(stockRequest, regexClean);
 
@@ -18,7 +18,7 @@ const updateStockItem = (async (stockItemId) => {
 
     const updatePromise = await axios.patch('stock', stockRequest, axiosConfig).catch(err => err);
 
-    if (updatePromise.status === 200) document.location.reload();
+    // if (updatePromise.status === 200) document.location.reload();
 });
 
 const deleteStockItem = (async (stockItemId) => {
@@ -33,28 +33,52 @@ const deleteStockItem = (async (stockItemId) => {
     card.remove();
 });
 
+const createCheckboxItems = ((usersWishlist, users) => {
+    const checkedUsersIds = usersWishlist.map(user => user.id);
+    const checkboxItems = [];
+
+    for (const user of users) {
+        const { id, name } = user;
+        const checked = checkedUsersIds.includes(id);
+        const checkboxItem = { value: id, label: name, checked };
+
+        checkboxItems.push(checkboxItem);
+    }
+
+    return checkboxItems;
+});
+
 const showUpdateStockItemModal = (async (stockItemId) => {
-    const findPromise = await axios.get(`stock/${stockItemId}`, axiosConfig).catch(err => err);
+    const findStock = await axios.get(`stock/${stockItemId}`, axiosConfig).catch(err => err);
+    const listUsers = await axios.get('users', { params: { type: 'json' } }, axiosConfig).catch(err => err);
 
-    if (findPromise.status !== 200) return null;
+    if (findStock.status !== 200 || listUsers.status !== 200) return null;
 
-    const { data: { stockItem } } = findPromise;
+    const { data: { stockItem } } = findStock;
 
     if (!stockItem) return null;
 
-    const { id, quantity, vehicle: { manufacturer, model } } = stockItem;
+    const { data: { users } } = listUsers;
+
+    const { id, quantity, vehicle: { manufacturer, model }, usersWishlist } = stockItem;
 
     document.querySelector('div#overlay').classList.replace('hide', 'show');
-    document.querySelector('main').appendChild(createModal({
+
+    const checkboxItems = createCheckboxItems(usersWishlist, users);
+
+    const modal = createModal({
         title: 'Update Stock Item', saveFunction: 'updateStockItem()',
         content: [
             [
                 { label: 'Vehicle', type: 'select', disabled: true, selectOptions: [{ value: null, text: `${manufacturer} ${model}` }] },
                 { label: 'Quantity', field: 'quantity', type: 'number', required: true, value: quantity },
                 { field: 'id', type: 'hidden', disabled: true, value: id }
+            ],
+            [
+                { label: 'Wishlist', type: 'checkbox', field: 'users', prefix: 'userId', checkboxItems }
             ]
         ]
-    }));
+    });
 
-    console.log();
+    document.querySelector('main').appendChild(modal);
 });
