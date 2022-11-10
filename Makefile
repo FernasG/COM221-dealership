@@ -1,3 +1,5 @@
+.PHONY: test
+
 up:
 	@docker-compose up
 
@@ -7,7 +9,7 @@ build:
 sh:
 	@docker-compose exec dealership-service bash
 
-test\:run:
+test:
 	@docker-compose exec dealership-service bash -c "npm run test"
 
 test\:coverage:
