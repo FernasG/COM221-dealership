@@ -39,6 +39,7 @@
       "@controllers": ["src/controllers"],
       "@controllers/*": ["src/controllers/*"],
       "@middleware": ["src/middleware/Request.middleware.ts"],
+      "@handlebars-helpers": ["public/handlebars/HandlebarsHelpers"],
       "@factory": ["src/factory"]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
