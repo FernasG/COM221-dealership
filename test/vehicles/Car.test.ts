@@ -1,7 +1,11 @@
 import { Car } from "@vehicles";
 
-test("Create car and expect to be defined", () => {
-    const car = new Car('Palio', 'Fiat', '2004-05-01', 10000);
+let car: Car;
 
-    expect(car).toBeDefined();
+beforeEach(() => {
+    car = new Car('Mobi', 'Fiat', '2022-01-01', 67680);
+});
+
+test("Expected getIPVA return expected value", () => {
+    expect(car.calculateIPVA()).toBe(2707.20);
 });

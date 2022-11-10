@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest test",
-    "test:coverage": "jest coverage",
+    "test:coverage": "jest test --coverage",
     "start": "ts-node -r tsconfig-paths/register app.ts",
     "start:dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch /node_modules/ app.ts"
   },
