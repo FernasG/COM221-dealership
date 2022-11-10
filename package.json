@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch /node_modules/ app.ts",
-    "start": "ts-node -r tsconfig-paths/register app.ts"
+    "test": "jest test",
+    "test:coverage": "jest coverage",
+    "start": "ts-node -r tsconfig-paths/register app.ts",
+    "start:dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch /node_modules/ app.ts"
   },
   "keywords": [],
   "author": "",
