@@ -1,3 +1,4 @@
+import { EmailService } from "@libraries";
 import { Observer } from "./Observer";
 import * as uuid from "uuid";
 
@@ -50,6 +51,10 @@ export class User extends Observer {
     }
 
     public async update(quantity: number): Promise<void> {
-        console.log(`Q: ${quantity}`);
+        const sendEmail = new EmailService().send(this.email);
+
+        if (!sendEmail) return;
+
+        console.log(`[EMAIL SENT] User ${this.email} ~ Date ${new Date().toLocaleString('pt-br')}`);
     }
 }

@@ -1,7 +1,9 @@
 import { SendEmailCommand, SESClient } from "@aws-sdk/client-ses";
 import { Charset } from "./Email.interface";
+import { Utils } from "@libraries";
 
 export class EmailService {
+    private readonly utils: Utils = new Utils();
     private readonly SESClient: SESClient;
 
     constructor() {
@@ -30,6 +32,8 @@ export class EmailService {
             console.error(err);
             return null;
         });
+
+        await this.utils.sleep(1);
 
         return sendEmail;
     }
