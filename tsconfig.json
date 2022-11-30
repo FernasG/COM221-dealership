@@ -36,6 +36,12 @@
       ],
       "@factory": [
         "src/factory"
+      ],
+      "@libraries": [
+        "src/libraries"
+      ],
+      "@libraries/*": [
+        "src/libraries/*"
       ]
     },
     "esModuleInterop": true,
