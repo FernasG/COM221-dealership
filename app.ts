@@ -21,5 +21,5 @@ const setupServer = ((app: Express) => {
     const app = express();
     setupServer(app);
 
-    app.listen(PORT, () => { console.log(`Server running: http://localhost:${PORT}`) });
+    app.listen(PORT, () => { console.log(`Server running: http://dealership or http://localhost:${PORT}`) });
 })();

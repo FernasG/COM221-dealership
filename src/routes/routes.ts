@@ -8,7 +8,6 @@ const stockController = new StockController();
 const usersController = new UsersController();
 
 router.get('', (req: Request, res: Response) => {
-    // res.render('Home');
     res.redirect('/vehicles');
 });
 
@@ -18,7 +17,7 @@ router.post('/vehicles', vehiclesController.createVehicle.bind(vehiclesControlle
 router.delete('/vehicles/:id', vehiclesController.deleteVehicle.bind(vehiclesController));
 router.patch('/vehicles', vehiclesController.updateVehicle.bind(vehiclesController));
 
-router.get('/system', systemController.listSystem.bind(systemController));
+router.get('/system', systemController.showSystem.bind(systemController));
 
 router.get('/stock', stockController.listStock.bind(stockController));
 router.get('/stock/:id', stockController.findStockItem.bind(stockController));

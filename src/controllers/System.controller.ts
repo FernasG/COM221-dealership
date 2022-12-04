@@ -1,8 +1,21 @@
-import { BaseController } from "./BaseController";
 import { Request, Response } from "express";
+import { BaseController } from "./BaseController";
+import { SystemBilling } from "./Controllers.interface";
 
 export class SystemController extends BaseController {
-    public async listSystem(req: Request, res: Response) {
-        return res.render('System', { });
+    public async showSystem(req: Request, res: Response) {
+        const stock = this.App.getStock;
+        const billing: SystemBilling[] = [];
+
+        stock.forEach(stockItem => {
+            const vehicle = stockItem.getVehicle;
+            const vehicleName = `${vehicle.getManufacturer} ${vehicle.getModel}`;
+            const stockBillPrice = vehicle.calculateIPVA() * stockItem.getQuantity;
+
+            const stockBill = { vehicle: vehicleName, quantity: stockItem.getQuantity, bill: stockBillPrice };
+            billing.push(stockBill);
+        });
+
+        return res.render('System', { billing });
     }
 }

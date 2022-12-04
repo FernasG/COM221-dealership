@@ -1,1 +1,88 @@
-<h1>System</h1>
+<style>
+    .system-button {
+        border-radius: 5px;
+        font-weight: bold;
+        background: var(--neon-blue);
+        padding: 10px;
+        cursor: pointer;
+        color: var(--magnolia);
+        font-size: 12pt;
+    }
+
+    #no-content {
+        height: 50px;
+    }
+
+    #billing-board {
+        width: 100%;
+        height: 100%;
+        padding: 10px 5px;
+    }
+
+    #billing-board>#board-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 10px;
+    }
+
+    #billing-board>#board-header>.header-item {
+        text-align: center;
+        font-weight: bold;
+        height: 20px;
+        
+    }
+
+    #billing-board>#board-body>.bill-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+    }
+</style>
+
+<div class="modal hide">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h3>Stock Billing</h3>
+        </div>
+        <div class="modal-controls">
+            <button class="center" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal-body">
+        {{#if billing}}
+        <div id="billing-board">
+            <div id="board-header">
+                <div class="header-item">Vehicle</div>
+                <div class="header-item">Quantity</div>
+                <div class="header-item">Price (R$)</div>
+            </div>
+            <div id="board-body">
+                {{#each billing}}
+                <div class="bill-item">
+                    <div class="body-item">{{this.vehicle}}</div>
+                    <div class="body-item">{{this.quantity}}</div>
+                    <div class="body-item">{{currency this.bill}}</div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{else}}
+        <div id="no-content" class="center">No content</div>
+        {{/if}}
+    </div>
+    <div class="modal-footer">
+        <div class="modal-buttons">
+            <button class="cancel" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div id="card-board">
+        <button class="system-button" onclick="showModal()">
+            Calculate IPVA
+        </button>
+    </div>
+</div>

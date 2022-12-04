@@ -20,6 +20,10 @@ const setSectionTitle = ((viewName) => {
     const title = viewName.charAt(0).toUpperCase() + viewName.slice(1);
 
     sectionTitle.innerHTML = title;
+
+    if (title !== 'System') return;
+
+    document.querySelector('#section-title>div.buttons>button').remove();
 });
 
 const applyCurrencyMask = (() => {

@@ -9,3 +9,9 @@ export enum HttpStatus {
     BAD_GATEWAY = 502,
     GATEWAY_TIMEOUT = 504
 }
+
+export interface SystemBilling {
+    bill: number,
+    vehicle: string,
+    quantity: number
+}

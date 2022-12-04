@@ -187,7 +187,7 @@ div.modal {
     left: 50%;
     width: 650px;
     position: absolute;
-    min-height: 200px;
+    min-height: 100px;
     background: var(--dark-jungle-gray);
     user-select: none;
     border-radius: 10px;
