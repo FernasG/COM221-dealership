@@ -1,6 +1,9 @@
-import { EmailService } from "@libraries";
+import { Charset, EmailService, SESMessage } from "@libraries";
+import { compile as HBSCompiler } from "handlebars";
 import { Observer } from "./Observer";
 import * as uuid from "uuid";
+import path from "path";
+import fs from "fs";
 
 export class User extends Observer {
     private readonly id: string;
@@ -50,8 +53,15 @@ export class User extends Observer {
         this.birthdate = birthdate;
     }
 
-    public async update(quantity: number): Promise<void> {
-        const sendEmail = await new EmailService().send(this.email);
+    public async update(oldQuantity: number, quantity: number): Promise<void> {
+        const HTML = HBSCompiler(fs.readFileSync(path.join('public', 'views', 'emails', 'StockItemUpdated.hbs')).toString());
+
+        const message: SESMessage = {
+            Body: { Html: { Data: HTML({ username: this.name, oldQuantity, quantity }), Charset: Charset.UTF8 } },
+            Subject: { Data: '[Dealership] - Stock Update', Charset: Charset.UTF8 }
+        };
+
+        const sendEmail = await new EmailService().send(this.email, message);
 
         if (!sendEmail) return;
 

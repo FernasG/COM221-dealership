@@ -34,12 +34,13 @@ export class StockItem extends Observable {
     }
 
     public set setQuantity(quantity: number) {
+        const oldQuantity = this.quantity;
         this.quantity = quantity;
-        this.notify();
+        this.notify(oldQuantity, quantity);
     }
 
-    protected notify(): void {
-        this.usersWishlist.forEach((user) => { user.update(this.quantity); });
+    protected notify(oldQuantity: number, quantity: number): void {
+        this.usersWishlist.forEach((user) => { user.update(oldQuantity, quantity); });
     }
 
     public register(observer: Observer): void {
