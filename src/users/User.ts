@@ -51,7 +51,7 @@ export class User extends Observer {
     }
 
     public async update(quantity: number): Promise<void> {
-        const sendEmail = new EmailService().send(this.email);
+        const sendEmail = await new EmailService().send(this.email);
 
         if (!sendEmail) return;
 

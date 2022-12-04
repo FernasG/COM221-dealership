@@ -10,8 +10,8 @@ export class EmailService {
         this.SESClient = new SESClient({
             region: process.env.AWS_REGION,
             credentials: {
-                accessKeyId: process.env.AWS_SECRET_KEY as string,
-                secretAccessKey: process.env.AWS_ACCESS_KEY_ID as string
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+                secretAccessKey: process.env.AWS_SECRET_KEY as string
             }
         });
     }
