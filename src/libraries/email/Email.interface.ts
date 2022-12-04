@@ -4,7 +4,9 @@ export enum Charset {
     ISO = "ISO-8859-1"
 }
 
-export interface SESMessage {
-    Body: { Html: { Data: string, Charset: Charset } },
-    Subject: { Data: string, Charset: Charset }
+export interface MessageAttributes {
+    quantity: number,
+    username: string,
+    oldQuantity: number,
+    vehicleName: string
 }

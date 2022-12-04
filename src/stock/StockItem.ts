@@ -40,7 +40,7 @@ export class StockItem extends Observable {
     }
 
     protected notify(oldQuantity: number, quantity: number): void {
-        this.usersWishlist.forEach((user) => { user.update(oldQuantity, quantity); });
+        this.usersWishlist.forEach((user) => { user.update(this.vehicle.getModel, oldQuantity, quantity); });
     }
 
     public register(observer: Observer): void {
