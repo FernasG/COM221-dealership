@@ -16,6 +16,8 @@ export class SystemController extends BaseController {
             billing.push(stockBill);
         });
 
-        return res.render('System', { billing });
+        const total = billing.reduce((acc, current) => { return acc += current.bill; }, 0);
+
+        return res.render('System', { billing, total });
     }
 }
