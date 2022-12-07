@@ -2,42 +2,44 @@ import { Vehicle, Motorcycle } from "@vehicles";
 import { StockItem } from "@stock";
 import { User } from "@users";
 
-let stockItem: StockItem;
-let vehicle: Vehicle;
-let users: User[] = [];
+jest.mock('@libraries');
 
-beforeEach(() => {
-    vehicle = new Motorcycle('FZ25', 'Yamaha', '2022-05-01', 25000);
-    stockItem = new StockItem(vehicle, 10);
-});
+describe('Test StockItem entity', () => {
+    let stockItem: StockItem;
+    let vehicle: Vehicle;
+    let users: User[] = [];
 
-beforeAll(() => {
-    const user = new User('204.636.380-93', 'John Doe', 'john.doe@outlook.com', new Date());
-    stockItem.register(user);
-    users.push(user);
-});
+    beforeAll(() => {
+        const user = new User('204.636.380-93', 'John Doe', 'john.doe@outlook.com', new Date());
+        vehicle = new Motorcycle('FZ25', 'Yamaha', '2022-05-01', 25000);
+        stockItem = new StockItem(vehicle, 10);
 
-test("Stock Item should be defined", () => {
-    expect(stockItem).toBeDefined();
-});
+        stockItem.register(user);
+        users.push(user);
+    });
 
-test("Stock Item ID should be defined", () => {
-    expect(stockItem.getId).toBeDefined();
-    expect(stockItem.getId.length).toBe(36);
-});
+    test("Stock Item should be defined", () => {
+        expect(stockItem).toBeDefined();
+    });
 
-test("Should get vehicle", () => {
-    expect(stockItem.getVehicle).toEqual(vehicle);
-});
+    test("Stock Item ID should be defined", () => {
+        expect(stockItem.getId).toBeDefined();
+        expect(stockItem.getId.length).toBe(36);
+    });
 
-test("Should get and set quantity", () => {
-    expect(stockItem.getQuantity).toEqual(10);
+    test("Should get vehicle", () => {
+        expect(stockItem.getVehicle).toEqual(vehicle);
+    });
 
-    stockItem.setQuantity = 2;
+    test("Should get and set quantity", () => {
+        expect(stockItem.getQuantity).toEqual(10);
 
-    expect(stockItem.getQuantity).toEqual(2);
-});
+        stockItem.setQuantity = 2;
 
-test("Should get users wishlist", () => {
-    expect(Array.from(stockItem.getUsersWishlist)).toEqual(users);
+        expect(stockItem.getQuantity).toEqual(2);
+    });
+
+    test("Should get users wishlist", () => {
+        expect(Array.from(stockItem.getUsersWishlist)).toEqual(users);
+    });
 });
