@@ -12,10 +12,12 @@ describe('Test StockItem entity', () => {
     beforeAll(() => {
         const user = new User('204.636.380-93', 'John Doe', 'john.doe@outlook.com', new Date());
         vehicle = new Motorcycle('FZ25', 'Yamaha', '2022-05-01', 25000);
-        stockItem = new StockItem(vehicle, 10);
-
-        stockItem.register(user);
         users.push(user);
+    });
+
+    beforeEach(() => {
+        stockItem = new StockItem(vehicle, 10);
+        users.forEach(user => stockItem.register(user));
     });
 
     test("Stock Item should be defined", () => {
@@ -41,5 +43,22 @@ describe('Test StockItem entity', () => {
 
     test("Should get users wishlist", () => {
         expect(Array.from(stockItem.getUsersWishlist)).toEqual(users);
+    });
+
+    test("Should cancel user register from Stock Item", () => {
+        const user = new User('475.072.360-64', 'Jane Doe', 'jane.doe@yahoo.com', new Date());
+        stockItem.register(user);
+
+        expect(stockItem.getUsersWishlist.size).toBe(2);
+
+        stockItem.cancelRegister(user);
+
+        expect(stockItem.getUsersWishlist.size).toBe(1);
+    });
+
+    test("Should return JSON view of Stock Item entity", () => {
+        const stockItemJSON = stockItem.toJSON();
+
+        expect(stockItemJSON).toBeInstanceOf(Object);
     });
 });
