@@ -1,6 +1,7 @@
 # COM221 - Dealership
 
 ![alt last commit](https://img.shields.io/github/last-commit/FernasG/COM221-dealership?style=flat-square)
+![alt files in src](https://img.shields.io/github/directory-file-count/FernasG/COM221-dealership/src?label=files&style=flat-square)
 
 Sistema de gerenciamento de concessionária, o site permite manter veículos, usuários e estoque de veículos, sendo possível cadastrar usuários para serem notificados quando o estoque de um veículo de seu interesse foi alterado. Além de permitir ao proprietário da concessionária gerar o valor do IPVA de sua frota.
 
@@ -20,7 +21,7 @@ O módulo de notificação do sistema envia e-mails aos usuários e usamos o [Si
 2. Ao abrir o arquivo insira nos campos com prefixo `AWS` as suas credenciais das AWS.
 3. No campo `SOURCE_EMAIL` você deve inserir a conta que vai enviar os e-mails para os usuários.
 
-OBS: para um configuração mais simples é possível remover o trecho que faz o envio de e-mails, tirando a necessidade de ter uma conta na AWS.
+OBS: para um configuração mais simples é possível remover o trecho de código que faz o envio de e-mails, tirando a necessidade de ter uma conta na AWS.
 
 ### Hosts
 
@@ -51,3 +52,7 @@ Esse comando fará o _build_ do projeto, após finalizar você verá a seguinte 
 Server running: http://dealership or http://localhost:80
 ```
 Você pode acessar qualquer um dos links acima para começar a usar a plataforma.
+
+## Autores
+
+[Fernando Goulart](https://www.linkedin.com/in/fernando-goulart-2534901b9/)
