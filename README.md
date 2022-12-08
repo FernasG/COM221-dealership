@@ -37,6 +37,9 @@ sudo nano /etc/hosts
 ```
 3. Use o atalho <kbd>CTRL</kbd>+<kbd>O</kbd> para salvar e <kbd>CTRL</kbd>+<kbd>X</kbd> para fechar o arquivo.
 
+Windows:
+- Você pode seguir o tutorial do [Tecnoblog](https://tecnoblog.net/responde/editar-arquivo-hosts-windows/) para alterar o _hosts_.
+
 ### Execução
 
 Com o ambiente configurado abra o terminal na raiz do projeto e execute o comando:
@@ -47,4 +50,4 @@ Esse comando fará o _build_ do projeto, após finalizar você verá a seguinte 
 ```
 Server running: http://dealership or http://localhost:80
 ```
-Você pode acessar qualquer um dos links acima e começar a usar a plataforma.
+Você pode acessar qualquer um dos links acima para começar a usar a plataforma.
