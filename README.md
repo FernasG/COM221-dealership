@@ -5,6 +5,21 @@
 
 Sistema de gerenciamento de concessionária, o site permite manter veículos, usuários e estoque de veículos, sendo possível cadastrar usuários para serem notificados quando o estoque de um veículo de seu interesse foi alterado. Além de permitir ao proprietário da concessionária gerar o valor do IPVA de sua frota.
 
+## Dependências
+
+- Express;
+- TypeScript;
+- Handlebars;
+- Amazon Web Services (AWS);
+- Jest.
+
+## Padrões de Projeto
+
+- Observadores;
+- Singleton;
+- Strategy;
+- Factory.
+
 ## Instalação
 
 ### Configuração de Ambiente
