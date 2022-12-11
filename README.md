@@ -15,8 +15,8 @@ Sistema de gerenciamento de concessionária, o site permite manter veículos, us
 
 ## Padrões de Projeto
 
-- Observadores;
 - Singleton;
+- Observer;
 - Strategy;
 - Factory.
 
